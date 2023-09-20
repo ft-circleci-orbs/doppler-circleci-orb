@@ -1,6 +1,6 @@
 # Doppler CircleCI Orb
 
-[![CircleCI Build Status](https://circleci.com/gh/Financial-Times/doppler-circleci-orb.svg?style=shield&circle-token=c8aa8d7154df9de48a98c5231042bff7952b5fce)](https://circleci.com/gh/Financial-Times/doppler-circleci-orb) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Financial-Times/doppler-circleci-orb/master/LICENSE)
+[![CircleCI Build Status](https://circleci.com/gh/ft-circleci-orbs/doppler-circleci-orb.svg?style=shield&circle-token=c8aa8d7154df9de48a98c5231042bff7952b5fce)](https://circleci.com/gh/ft-circleci-orbs/doppler-circleci-orb) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/ft-circleci-orbs/doppler-circleci-orb/master/LICENSE)
 
 A CircleCI orb to load secrets managed in Doppler into CircleCI projects as environment variables.
 
@@ -38,7 +38,7 @@ Add the following to your CircleCI project config file (.circleci/config.yml) to
 
 ```yml
 orbs:
-    doppler-circleci: financial-times/doppler-circleci@1.2
+    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.2
 ```
 
 ### 3. Install Doppler CLI and load secrets
@@ -91,9 +91,9 @@ You can alternatively use a users personal token along with a project parameter 
 
 ## Additional Resources
 
-There is a Financial-Times internal [guide on Tech Hub](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide) which will walk you through how to get the best out of Doppler.
+There is a Financial Times internal [guide on Tech Hub](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide) which will walk you through how to get the best out of Doppler.
 
-Please also refer to the Financial-Times internal Cyber Security teams guidelines for more information on [default envs](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide#using-the-default-environments).
+Please also refer to the Financial Times internal Cyber Security teams guidelines for more information on [default envs](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide#using-the-default-environments).
 
 ## Acknowledgements
 
