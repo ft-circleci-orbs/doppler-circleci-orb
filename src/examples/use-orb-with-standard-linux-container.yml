@@ -1,0 +1,21 @@
+description: >
+  An example of jobs that use the install and load_secrets commands.
+usage:
+  version: 2.1
+  orbs:
+    doppler-circleci: financial-times/doppler-circleci@1.2.1
+  jobs:
+    use-orb-with-standard-linux-container:
+      docker:
+        - image: cimg/base:current
+      steps:
+        - checkout
+        - doppler-circleci/install
+        - doppler-circleci/load_secrets
+        - run:
+            name: Print out doppler secret as an environment variable
+            command: echo -e "${SUPER_SECRET_PASSWORD}"
+workflows:
+    setup:
+      jobs:
+        - use-orb-with-standard-linux-container

@@ -1,0 +1,21 @@
+description: >
+  An example of jobs that use the install and load_secrets commands.
+usage:
+  version: 2.1
+  orbs:
+    doppler-circleci: financial-times/doppler-circleci@1.2.1
+  jobs:
+    use-orb-with-alpine-container:
+      docker:
+        - image: alpine:latest
+      steps:
+        - checkout
+        - doppler-circleci/install
+        - doppler-circleci/load_secrets
+        - run:
+            name: Print out doppler secret as an environment variable
+            command: source $BASH_ENV && echo -e "${SUPER_SECRET_PASSWORD}" # Sourcing $BASH_ENV is required before executing any futher commands
+  workflows:
+    setup:
+      jobs:
+        - use-orb-with-alpine-container

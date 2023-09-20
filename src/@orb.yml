@@ -1,0 +1,9 @@
+version: 2.1
+
+description: >
+  A CircleCI orb to use the doppler CLI in the Financial Times CircleCI environment piplines.
+  Based on [conpagoaus/doppler-orb](https://github.com/conpagoaus/doppler-orb)
+
+display:
+  home_url: "https://github.com/Financial-Times/doppler-circleci-orb"
+  source_url: "https://github.com/Financial-Times/doppler-circleci-orb"

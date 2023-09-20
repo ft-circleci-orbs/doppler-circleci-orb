@@ -1,0 +1,6 @@
+description: >
+  Installs latest version of doppler. Supports linux(apt-get), Alpine(apk) and macos(brew) build agents.
+steps:
+  - run:
+      name: Install doppler
+      command: <<include(scripts/install_doppler.sh)>>
