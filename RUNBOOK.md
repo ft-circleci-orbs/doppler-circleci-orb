@@ -1,6 +1,6 @@
 # Doppler CircleCI Orb
 
-CircleCI orb to use doppler in your CircleCI pipelines.
+CircleCI orb to use Doppler in CircleCI pipelines.
 
 ## Code
 
@@ -30,14 +30,14 @@ Production
 
 Currently does the following:
 
-- At build time, installs doppler via a shell script
-- Retrieves secrets from a specified doppler project, based on the given doppler token.
+- At build time, installs the Doppler CLI via a shell script
+- Retrieves secrets from a Doppler project, based on the supplied Doppler token.
 
-No action should be required from the Operations Support team, but please speak to code-management if you need more information.
+Please speak to code-management if you need more information.
 
 ## Monitoring
 
-As this is a CircleCI orb, there is limited monitoring avaialable. Therefore, this is not applicable.
+As this is a CircleCI orb, there is limited monitoring available. Therefore, this is not applicable.
 
 ## Failover Architecture Type
 
@@ -78,21 +78,17 @@ A new orb version will be published upon a new GitHub release.
 
 ### Resources
 
-[CircleCI Orb Registry Page](https://circleci.com/developer/orbs/orb/financial-times/doppler-circleci) - The official registry page of this orb for all versions, executors, commands, and jobs described.
+[CircleCI Orb Registry Page](https://circleci.com/developer/orbs/orb/ft-circleci-orbs/doppler-circleci) - The official registry page of this orb for all versions, executors, commands, and jobs described.
 
 [CircleCI Orb Docs](https://circleci.com/docs/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
-
-#### How to Contribute
-
-We welcome [issues](https://github.com/Financial-Times/doppler-circleci-orb/issues) to and [pull requests](https://github.com/Financial-Times/doppler-circleci-orb/pulls) against this repository!
 
 #### How to Publish An Update
 
 1. Merge pull requests with desired changes to the main branch.
     - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
 2. Find the current version of the orb.
-    - You can run `circleci orb info financial-times/doppler-circleci | grep "Latest"` to see the current version.
-3. Create a [new Release](https://github.com/Financial-Times/doppler-circleci-orb/releases/new) on GitHub.
+    - You can run `circleci orb info ft-circleci-orbs/doppler-circleci | grep "Latest"` to see the current version.
+3. Create a [new Release](https://github.com/ft-circleci-orbs/doppler-circleci-orb/releases/new) on GitHub.
     - Click "Choose a tag" and _create_ a new [semantically versioned](http://semver.org/) tag. (ex: v1.0.0)
       - We will have an opportunity to change this before we publish if needed after the next step.
 4. Click _"+ Auto-generate release notes"_.
@@ -110,6 +106,4 @@ NotApplicable
 
 This is a publicly available orb.
 
-The full orb can be viewed at https://github.com/Financial-Times/doppler-circleci-orb
-
-The repository holds the orb data including the src which contains essential components for the orb, such as the install and load secrets scripts.
+The full orb can be viewed in Github at https://github.com/ft-circleci-orbs/doppler-circleci-orb
