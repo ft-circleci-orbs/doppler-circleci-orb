@@ -85,8 +85,6 @@ When using a Doppler service token there is no need to specify a project, since 
 
 ![The doppler-circleci/load_secrets command uses the Doppler CLI to get secrets from Doppler and then sets a CircleCI environment variables for each retrieved secret. Note, the Doppler service token is used when making the request to Doppler](./load_secrets.png)
 
-You can alternatively use a users personal token along with a project parameter which is required.
-
 ---
 
 ## Additional Resources
