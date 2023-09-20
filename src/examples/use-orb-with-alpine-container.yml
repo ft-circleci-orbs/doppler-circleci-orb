@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    doppler-circleci: financial-times/doppler-circleci@1.2.1
+    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.2.1
   jobs:
     use-orb-with-alpine-container:
       docker:
