@@ -25,7 +25,7 @@ workflows:
           filters: *filters
       - orb-tools/review:
           filters: *filters
-          exclude: "RC006, RC010" # excluding RC006 as the GitHub repo is private, exluding RC0010 as parameters do not pass validation in orb-tools.
+          exclude: "RC010" # exluding RC0010 as parameters do not pass validation in orb-tools.
       - shellcheck/check:
           filters: *filters
       - orb-tools/publish:
