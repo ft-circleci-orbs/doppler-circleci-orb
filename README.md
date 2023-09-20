@@ -93,8 +93,8 @@ You can alternatively use a users personal token along with a project parameter 
 
 There is a Financial Times internal [guide on Tech Hub](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide) which will walk you through how to get the best out of Doppler.
 
-Please also refer to the Financial Times internal Cyber Security teams guidelines for more information on [default envs](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide#using-the-default-environments).
+Please also refer to the Financial Times internal Cyber Security teams guidelines for more information on [default Doppler environments](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide#using-the-default-environments).
 
 ## Acknowledgements
 
-This orb makes use of the following publicly available code, which can be found at: [conpagoaus/doppler-orb](https://github.com/conpagoaus/doppler-orb)
+This orb is based on [conpagoaus/doppler-orb](https://github.com/conpagoaus/doppler-orb) and adapted for the Financial Times.
