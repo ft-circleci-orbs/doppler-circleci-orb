@@ -29,7 +29,7 @@ workflows:
       - shellcheck/check:
           filters: *filters
       - orb-tools/publish:
-          orb_name: financial-times/doppler-circleci
+          orb_name: ft-circleci-orbs/doppler-circleci
           vcs_type: << pipeline.project.type >>
           requires:
             - orb-tools/lint
