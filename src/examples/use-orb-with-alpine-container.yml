@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.2.1
+    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.3
   jobs:
     use-orb-with-alpine-container:
       docker:
@@ -14,7 +14,7 @@ usage:
         - doppler-circleci/load_secrets
         - run:
             name: Print out doppler secret as an environment variable
-            command: source $BASH_ENV && echo -e "${SUPER_SECRET_PASSWORD}" # Sourcing $BASH_ENV is required before executing any futher commands
+            command: source $BASH_ENV && echo -e "${SUPER_SECRET_PASSWORD}" # Sourcing $BASH_ENV is required before executing any further commands
   workflows:
     setup:
       jobs:
