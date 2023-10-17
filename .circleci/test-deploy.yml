@@ -37,7 +37,7 @@ jobs:
 
   command-test-apk:
     docker:
-      - image: alpine:latest
+      - image: hashicorp/terraform:0.12.8
     steps:
       - checkout
       # Run your orb's commands to validate them.
