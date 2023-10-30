@@ -16,6 +16,6 @@ usage:
             name: Print out doppler secret as an environment variable
             command: echo -e "${SUPER_SECRET_PASSWORD}"
 workflows:
-    setup:
-      jobs:
-        - use-orb-with-standard-linux-container
+  setup:
+    jobs:
+      - use-orb-with-standard-linux-container
