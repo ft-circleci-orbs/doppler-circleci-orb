@@ -70,6 +70,7 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
+            source $BASH_ENV
             if [ x"${SUPER_SECRET_PASSWORD}" == "x" ]
             then
               echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
