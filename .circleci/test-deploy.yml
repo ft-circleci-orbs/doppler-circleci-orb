@@ -44,12 +44,12 @@ jobs:
               echo "Test failed: DOPPLER_PROJECT has been set."
               exit 1
             fi
-            if [ $DOPPLER_CONFIG]
+            if [ $DOPPLER_CONFIG ]
             then
               echo "Test failed: DOPPLER_CONFIG has been set."
               exit 1
             fi
-            if [ $DOPPLER_ENVIRONMENT]
+            if [ $DOPPLER_ENVIRONMENT ]
             then
               echo "Test failed: DOPPLER_ENVIRONMENT has been set."
               exit 1
