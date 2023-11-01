@@ -34,22 +34,22 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            if [ -z $SUPER_SECRET_PASSWORD ]
+            if [ -z "$SUPER_SECRET_PASSWORD" ]
             then
               echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
               exit 1
             fi
-            if [ $DOPPLER_PROJECT ]
+            if [ "$DOPPLER_PROJECT" ]
             then
               echo "Test failed: DOPPLER_PROJECT has been set."
               exit 1
             fi
-            if [ $DOPPLER_CONFIG ]
+            if [ "$DOPPLER_CONFIG" ]
             then
               echo "Test failed: DOPPLER_CONFIG has been set."
               exit 1
             fi
-            if [ $DOPPLER_ENVIRONMENT ]
+            if [ "$DOPPLER_ENVIRONMENT" ]
             then
               echo "Test failed: DOPPLER_ENVIRONMENT has been set."
               exit 1
@@ -70,23 +70,22 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            source $BASH_ENV && echo -e "${SUPER_SECRET_PASSWORD}"
             if [ x"${SUPER_SECRET_PASSWORD}" == "x" ]
             then
               echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
               exit 1
             fi
-            if [ $DOPPLER_PROJECT ]
+            if [ "$DOPPLER_PROJECT" ]
             then
               echo "Test failed: DOPPLER_PROJECT has been set."
               exit 1
             fi
-            if [ $DOPPLER_CONFIG ]
+            if [ "$DOPPLER_CONFIG" ]
             then
               echo "Test failed: DOPPLER_CONFIG has been set."
               exit 1
             fi
-            if [ $DOPPLER_ENVIRONMENT ]
+            if [ "$DOPPLER_ENVIRONMENT" ]
             then
               echo "Test failed: DOPPLER_ENVIRONMENT has been set."
               exit 1
