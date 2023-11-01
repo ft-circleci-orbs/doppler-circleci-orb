@@ -2,9 +2,9 @@
 
 TOKEN=$(eval echo "\$$DOPPLER_TOKEN_NAME")
 
-SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format env | grep -v '^DOPPLER_PROJECT=\|^DOPPLER_CONFIG=\|^DOPPLER_ENVIRONMENT=')
+SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format env)
 
-for secret in $SECRETS; do
+for secret in $(echo $SECRETS | grep -v '^DOPPLER_PROJECT=\|^DOPPLER_CONFIG=\|^DOPPLER_ENVIRONMENT='); do
     echo "export $secret" >> "$BASH_ENV"
 done
 
