@@ -32,8 +32,29 @@ jobs:
       - doppler-circleci/install
       - doppler-circleci/load_secrets
       - run:
-          name: Print out doppler secret as an environment variable
-          command: echo -e "${SUPER_SECRET_PASSWORD}"
+          name: Assert environment variables set up as expected
+          command: |
+            if [ -z $SUPER_SECRET_PASSWORD ]
+            then
+              echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
+              exit 1
+            fi
+            if [ $DOPPLER_PROJECT ]
+            then
+              echo "Test failed: DOPPLER_PROJECT has been set."
+              exit 1
+            fi
+            if [ $DOPPLER_CONFIG]
+            then
+              echo "Test failed: DOPPLER_CONFIG has been set."
+              exit 1
+            fi
+            if [ $DOPPLER_ENVIRONMENT]
+            then
+              echo "Test failed: DOPPLER_ENVIRONMENT has been set."
+              exit 1
+            fi
+            echo "All tests passed."
 
   command-test-apk:
     docker:
