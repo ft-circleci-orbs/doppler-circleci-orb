@@ -2,9 +2,11 @@
 
 TOKEN=$(eval echo "\$$DOPPLER_TOKEN_NAME")
 
-./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format env | grep -v '^DOPPLER_PROJECT=\|^DOPPLER_CONFIG=\|^DOPPLER_ENVIRONMENT=' > .circleci/.dopplerenv
+SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format env | grep -v '^DOPPLER_PROJECT=\|^DOPPLER_CONFIG=\|^DOPPLER_ENVIRONMENT=')
 
-sed -e 's/^/export /' .circleci/.dopplerenv >> "$BASH_ENV"
+for secret in "$SECRETS"; do
+    echo "export $secret" >> "$BASH_ENV"
+done
+
 # shellcheck disable=SC1090
 source "$BASH_ENV"
-rm .circleci/.dopplerenv
