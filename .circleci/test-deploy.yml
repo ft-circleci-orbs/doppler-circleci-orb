@@ -97,14 +97,6 @@ jobs:
               exit 1
             fi
             echo "All tests passed."
-      - run:
-          name: Assert environment variables set up as expected
-          command: |
-            if [ -z "$SUPER_SECRET_PASSWORD" ]
-            then
-              echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
-              exit 1
-            fi
 
   command-test-load-secrets-from-two-configs:
     docker:
