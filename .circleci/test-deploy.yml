@@ -34,14 +34,14 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            if [ -z "$SUPER_SECRET_PASSWORD" ]
+            if [ -z "DEV_SECRET" ]
             then
-              echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
+              echo "Test failed: DEV_SECRET has not been set."
               exit 1
             fi
-            if [ -z "$SUPER_SECRET_KEY" ]
+            if [ -z "DEV_SECRET_2" ]
             then
-              echo "Test failed: SUPER_SECRET_KEY has not been set."
+              echo "Test failed: DEV_SECRET_2 has not been set."
               exit 1
             fi
             if [ "$DOPPLER_PROJECT" ]
@@ -76,9 +76,9 @@ jobs:
           name: Assert environment variables set up as expected
           command: |
             source $BASH_ENV
-            if [ x"${SUPER_SECRET_PASSWORD}" == "x" ]
+            if [ x"${DEV_SECRET}" == "x" ]
             then
-              echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
+              echo "Test failed: DEV_SECRET has not been set."
               exit 1
             fi
             if [ "$DOPPLER_PROJECT" ]
@@ -112,9 +112,9 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            if [ -z "$SUPER_SECRET_PASSWORD" ]
+            if [ -z "DEV_SECRET" ]
             then
-              echo "Test failed: SUPER_SECRET_PASSWORD has not been set."
+              echo "Test failed: DEV_SECRET has not been set."
               exit 1
             fi
             if [ -z "$TEST_SECRET" ]
