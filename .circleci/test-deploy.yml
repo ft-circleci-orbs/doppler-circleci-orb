@@ -32,8 +32,34 @@ jobs:
       - doppler-circleci/install
       - doppler-circleci/load_secrets
       - run:
-          name: Print out doppler secret as an environment variable
-          command: echo -e "${SUPER_SECRET_PASSWORD}"
+          name: Assert environment variables set up as expected
+          command: |
+            if [ -z "DEV_SECRET" ]
+            then
+              echo "Test failed: DEV_SECRET has not been set."
+              exit 1
+            fi
+            if [ -z "DEV_SECRET_2" ]
+            then
+              echo "Test failed: DEV_SECRET_2 has not been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_PROJECT" ]
+            then
+              echo "Test failed: DOPPLER_PROJECT has been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_CONFIG" ]
+            then
+              echo "Test failed: DOPPLER_CONFIG has been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_ENVIRONMENT" ]
+            then
+              echo "Test failed: DOPPLER_ENVIRONMENT has been set."
+              exit 1
+            fi
+            echo "All tests passed."
 
   command-test-apk:
     docker:
@@ -46,6 +72,56 @@ jobs:
       - run:
           name: Print out doppler secret as an environment variable
           command: source $BASH_ENV && echo -e "${SUPER_SECRET_PASSWORD}"
+      - run:
+          name: Assert environment variables set up as expected
+          command: |
+            source $BASH_ENV
+            if [ x"${DEV_SECRET}" == "x" ]
+            then
+              echo "Test failed: DEV_SECRET has not been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_PROJECT" ]
+            then
+              echo "Test failed: DOPPLER_PROJECT has been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_CONFIG" ]
+            then
+              echo "Test failed: DOPPLER_CONFIG has been set."
+              exit 1
+            fi
+            if [ "$DOPPLER_ENVIRONMENT" ]
+            then
+              echo "Test failed: DOPPLER_ENVIRONMENT has been set."
+              exit 1
+            fi
+            echo "All tests passed."
+
+  command-test-load-secrets-from-two-configs:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      # Run your orb's commands to validate them.
+      - doppler-circleci/install
+      - doppler-circleci/load_secrets:
+          doppler_token: DOPPLER_TOKEN
+      - doppler-circleci/load_secrets:
+          doppler_token: DOPPLER_TOKEN_2
+      - run:
+          name: Assert environment variables set up as expected
+          command: |
+            if [ -z "DEV_SECRET" ]
+            then
+              echo "Test failed: DEV_SECRET has not been set."
+              exit 1
+            fi
+            if [ -z "$TEST_SECRET" ]
+            then
+              echo "Test failed: SUPER_SECRET_KEY has not been set."
+              exit 1
+            fi
 workflows:
   test-deploy:
     jobs:
@@ -55,6 +131,9 @@ workflows:
           context: circleci-orb-publishing
           filters: *filters
       - command-test-apk:
+          context: circleci-orb-publishing
+          filters: *filters
+      - command-test-load-secrets-from-two-configs:
           context: circleci-orb-publishing
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
@@ -69,5 +148,6 @@ workflows:
             - orb-tools/pack
             - command-test-apt
             - command-test-apk
+            - command-test-load-secrets-from-two-configs
           context: circleci-orb-publishing
           filters: *release-filters
