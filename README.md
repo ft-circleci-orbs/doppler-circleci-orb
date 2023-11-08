@@ -38,7 +38,7 @@ Add the following to your CircleCI project config file (.circleci/config.yml) to
 
 ```yml
 orbs:
-    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.3
+    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.4
 ```
 
 ### 3. Install Doppler CLI and load secrets
