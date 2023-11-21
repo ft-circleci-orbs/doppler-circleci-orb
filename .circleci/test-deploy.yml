@@ -34,14 +34,14 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            if [ -z "DEV_SECRET" ]
+            if [ -z "SECRET_A1" ]
             then
-              echo "Test failed: DEV_SECRET has not been set."
+              echo "Test failed: SECRET_1 has not been set."
               exit 1
             fi
-            if [ -z "DEV_SECRET_2" ]
+            if [ -z "SECRET_A2" ]
             then
-              echo "Test failed: DEV_SECRET_2 has not been set."
+              echo "Test failed: SECRET_2 has not been set."
               exit 1
             fi
             if [ "$DOPPLER_PROJECT" ]
@@ -76,9 +76,14 @@ jobs:
           name: Assert environment variables set up as expected
           command: |
             source $BASH_ENV
-            if [ x"${DEV_SECRET}" == "x" ]
+            if [ x"${SECRET_A1}" == "x" ]
             then
-              echo "Test failed: DEV_SECRET has not been set."
+              echo "Test failed: SECRET_A1 has not been set."
+              exit 1
+            fi
+            if [ x"${SECRET_A2}" == "x" ]
+            then
+              echo "Test failed: SECRET_A2   has not been set."
               exit 1
             fi
             if [ "$DOPPLER_PROJECT" ]
@@ -112,14 +117,14 @@ jobs:
       - run:
           name: Assert environment variables set up as expected
           command: |
-            if [ -z "DEV_SECRET" ]
+            if [ -z "SECRET_A1" ]
             then
-              echo "Test failed: DEV_SECRET has not been set."
+              echo "Test failed: SECRET_A1 has not been set."
               exit 1
             fi
-            if [ -z "$TEST_SECRET" ]
+            if [ -z "$SECRET_B1" ]
             then
-              echo "Test failed: SUPER_SECRET_KEY has not been set."
+              echo "Test failed: SECRET_B1 has not been set."
               exit 1
             fi
 workflows:
