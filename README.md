@@ -93,6 +93,12 @@ There is a Financial Times internal [guide on Tech Hub](https://tech.in.ft.com/t
 
 Please also refer to the Financial Times internal Cyber Security teams guidelines for more information on [default Doppler environments](https://tech.in.ft.com/tech-topics/secrets-management/doppler/guide#using-the-default-environments).
 
+## Troubleshooting
+
+*This token does not have access to requested project* 
+
+In version 1.3 and earlier of this orb, a temporary file ./.circleci/doppplerenv was written to the filesystem containing DOPPLER_PROJECT and DOPPLER_CONFIG settings. In certain circumstances when using CircleCI caching features this file could end up being cached and used unintentionally in different CircleCI jobs using different Doppler tokens, likely causing the error above. To avoid this issue please update the config.yml to use ft-circleci-orbs/doppler-circleci@1.4 or higher. 
+
 ## Acknowledgements
 
 This orb is based on [conpagoaus/doppler-orb](https://github.com/conpagoaus/doppler-orb) and adapted for the Financial Times.
