@@ -2,11 +2,9 @@
 
 TOKEN=$(eval echo "\$$DOPPLER_TOKEN_NAME")
 
-SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format env)
+SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --format json)
 
-while IFS= read -r secret; do
-  echo "export $secret" >> "$BASH_ENV"
-done < <(printf '%s' "$SECRETS" | grep -v '^DOPPLER_PROJECT=\|^DOPPLER_CONFIG=\|^DOPPLER_ENVIRONMENT=')
+echo $(python parse_secrets.py $SECRETS) >> "$BASH_ENV"
 
 # shellcheck disable=SC1090
 source "$BASH_ENV"
