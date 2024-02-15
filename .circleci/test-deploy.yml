@@ -143,8 +143,8 @@ jobs:
             source $BASH_ENV
             echo "${MULTI_LINE_SECRET}"
             expected_value="1
-2
-3"
+            2
+            3"
             if [ "${MULTI_LINE_SECRET}" != "${expected_value}" ]
             then
               echo "Test failed: MULTI_LINE_SECRET has not been set as expected."
