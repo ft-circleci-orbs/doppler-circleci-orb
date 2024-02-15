@@ -161,6 +161,9 @@ workflows:
       - command-test-load-secrets-from-two-configs:
           context: circleci-orb-publishing
           filters: *filters
+      - command-test-load-multiline_secret:
+          context: circleci-orb-publishing
+          filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
