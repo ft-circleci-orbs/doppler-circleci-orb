@@ -3,4 +3,4 @@ description: >
 steps:
   - run:
       name: Install doppler
-      command: <<include(scripts/install_doppler.sh)>>
+      command: <<include(scripts/install.sh)>>
