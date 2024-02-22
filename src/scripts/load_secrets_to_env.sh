@@ -6,7 +6,7 @@ SECRETS=$(./doppler secrets download -t "${TOKEN}" --no-file --no-read-env --for
 
 echo -E "${SECRETS}" |
   jq 'del(.DOPPLER_CONFIG, .DOPPLER_PROJECT, .DOPPLER_ENVIRONMENT)' |
-  jq -r 'to_entries[] | "export \(.key)=\"\(.value)\""' >> "$BASH_ENV"
+  jq -r 'to_entries[] |.value |= gsub("\""; "\\\"") | "export \(.key)=\"\(.value)\""' >> "$BASH_ENV"
 
 # shellcheck disable=SC1090
 source "$BASH_ENV"
