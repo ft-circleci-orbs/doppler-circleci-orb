@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.5.1
+    doppler-circleci: ft-circleci-orbs/doppler-circleci@1.5
   jobs:
     use-orb-with-standard-linux-container:
       docker:
