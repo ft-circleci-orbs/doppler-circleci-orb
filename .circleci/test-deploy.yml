@@ -128,7 +128,7 @@ jobs:
               exit 1
             fi
 
-  command-test-load-multiline_secret:
+  command-test-load-multiline-secret:
     docker:
       - image: cimg/base:current
     steps:
@@ -187,7 +187,7 @@ workflows:
       - command-test-load-secrets-from-two-configs:
           context: circleci-orb-publishing
           filters: *filters
-      - command-test-load-multiline_secret:
+      - command-test-load-multiline-secret:
           context: circleci-orb-publishing
           filters: *filters
       - command-test-load-secret-with-double-quotes:
@@ -206,7 +206,7 @@ workflows:
             - command-test-apt
             - command-test-apk
             - command-test-load-secrets-from-two-configs
-            - command-test-load-multiline_secret
-            - command-test-load-secret-with-double_quotes
+            - command-test-load-multiline-secret
+            - command-test-load-secret-with-double-quotes
           context: circleci-orb-publishing
           filters: *release-filters
