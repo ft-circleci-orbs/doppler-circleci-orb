@@ -128,7 +128,7 @@ jobs:
               exit 1
             fi
 
-  command-test-load-multiline_secret:
+  command-test-load-multiline-secret:
     docker:
       - image: cimg/base:current
     steps:
@@ -151,6 +151,28 @@ jobs:
               exit 1
             fi
 
+  command-test-load-secret-with-double-quotes:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      # Run your orb's commands to validate them.
+      - doppler-circleci/install
+      - doppler-circleci/load_secrets:
+          doppler_token: DOPPLER_TOKEN_DOUBLE_QUOTES
+      - run:
+          name: Assert environment variables set up as expected
+          command: |
+            source $BASH_ENV
+            echo "${SECRET_WITH_DOUBLE_QUOTES}"
+            expected_value='This is a "test string" which contains "double quotes"'
+            if [ "${SECRET_WITH_DOUBLE_QUOTES}" != "${expected_value}" ]
+            then
+              echo "Test failed: SECRET_WITH_DOUBLE_QUOTES has not been set as expected."
+              exit 1
+            fi
+
+
 workflows:
   test-deploy:
     jobs:
@@ -165,7 +187,10 @@ workflows:
       - command-test-load-secrets-from-two-configs:
           context: circleci-orb-publishing
           filters: *filters
-      - command-test-load-multiline_secret:
+      - command-test-load-multiline-secret:
+          context: circleci-orb-publishing
+          filters: *filters
+      - command-test-load-secret-with-double-quotes:
           context: circleci-orb-publishing
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
@@ -181,6 +206,7 @@ workflows:
             - command-test-apt
             - command-test-apk
             - command-test-load-secrets-from-two-configs
-            - command-test-load-multiline_secret
+            - command-test-load-multiline-secret
+            - command-test-load-secret-with-double-quotes
           context: circleci-orb-publishing
           filters: *release-filters
