@@ -55,8 +55,8 @@ jobs:
       - doppler-circleci/install
       - doppler-circleci/load_secrets
       - run:
-          name: Echo a Doppler secret after loading secrets
-          command: echo -e "${YOUR_DOPPLER_SECRET}"
+          name: Use the Doppler secret NPM_TOKEN to configure npm
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
 ```
 
 Secrets defined in the Doppler project **ci** environment will get configued as environment variables if everything is set up correctly. After load_secrets is executed, secrets will be accesible using the [CircleCI environment variables syntax](https://circleci.com/docs/env-vars/) e.g. ```${YOUR_DOPPLER_SECRET}```.
@@ -65,8 +65,8 @@ If you're using an Alpine based Docker image, when loading secrets an extra step
 
 ```yml
       - run:
-          name: Echo a Doppler secret after loading secrets
-          command: source $BASH_ENV && echo -e "${YOUR_DOPPLER_SECRET}"
+          name: Use the Doppler secret NPM_TOKEN to configure npm
+          command: source $BASH_ENV && echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
 ```
 
 ---

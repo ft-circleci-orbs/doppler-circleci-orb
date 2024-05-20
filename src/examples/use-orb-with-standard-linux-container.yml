@@ -13,8 +13,8 @@ usage:
         - doppler-circleci/install
         - doppler-circleci/load_secrets
         - run:
-            name: Print out doppler secret as an environment variable
-            command: echo -e "${SUPER_SECRET_PASSWORD}"
+            name: Use the secret NPM_TOKEN from Doppler to configure npm
+            command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
 workflows:
   setup:
     jobs:
