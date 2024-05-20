@@ -159,7 +159,7 @@ jobs:
       # Run your orb's commands to validate them.
       - doppler-circleci/install
       - doppler-circleci/load_secrets:
-          doppler_token: DOPPLER_TOKEN_DOUBLE_QUOTES
+          doppler_token: DOPPLER_TOKEN_SPECIAL_CHARACTERS
       - run:
           name: Assert environment variables set up as expected
           command: |
@@ -169,6 +169,27 @@ jobs:
             if [ "${SECRET_WITH_DOUBLE_QUOTES}" != "${expected_value}" ]
             then
               echo "Test failed: SECRET_WITH_DOUBLE_QUOTES has not been set as expected."
+              exit 1
+            fi
+
+  command-test-load-secret-with-dollar-signs:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      # Run your orb's commands to validate them.
+      - doppler-circleci/install
+      - doppler-circleci/load_secrets:
+          doppler_token: DOPPLER_TOKEN_SPECIAL_CHARACTERS
+      - run:
+          name: Assert environment variables set up as expected
+          command: |
+            source $BASH_ENV
+            echo "${SECRET_WITH_DOLLAR_SIGNS}"
+            expected_value='This is a "test string" which contains $DOLLAR $VALUES $$'
+            if [ "${SECRET_WITH_DOLLAR_SIGNS}" != "${expected_value}" ]
+            then
+              echo "Test failed: SECRET_WITH_DOLLAR_SIGNS has not been set as expected."
               exit 1
             fi
 
@@ -193,6 +214,9 @@ workflows:
       - command-test-load-secret-with-double-quotes:
           context: circleci-orb-publishing
           filters: *filters
+      - command-test-load-secret-with-dollar-signs:
+          context: circleci-orb-publishing
+          filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
@@ -208,5 +232,6 @@ workflows:
             - command-test-load-secrets-from-two-configs
             - command-test-load-multiline-secret
             - command-test-load-secret-with-double-quotes
+            - command-test-load-secret-with-dollar-signs
           context: circleci-orb-publishing
           filters: *release-filters
