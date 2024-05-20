@@ -13,7 +13,7 @@ usage:
         - doppler-circleci/install
         - doppler-circleci/load_secrets
         - run:
-            name: Use the secret NPM_TOKEN from Doppler to configure npm 
+            name: Use the secret NPM_TOKEN from Doppler to configure npm
             command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
 workflows:
   setup:
