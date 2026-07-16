@@ -51,8 +51,7 @@ workflows:
           name: doppler-circleci-orb-prod
           filters:
             <<: *filters_version_tag
-          context: change-api-orb
+          context: doppler-circleci-orb-change-api
           system-code: doppler-circleci-orb
           environment: prod
           slack-channels: ft-changes, cm-alerts
-
